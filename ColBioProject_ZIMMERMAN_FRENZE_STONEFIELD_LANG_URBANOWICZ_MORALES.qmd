@@ -4,33 +4,31 @@ format: html
 editor: visual
 ---
 
-## Load Packages
-
-```{r}
-library(tidyverse)
-```
-
 ## Load Data
 
 ```{r}
-# Pull data from https://github.com/Stoney044/Ebird_IPEDS
-
-EB_url <- "https://raw.githubusercontent.com/Stoney044/Ebird_IPEDS/main/EBbird.csv"
-IP_url <- "https://raw.githubusercontent.com/Stoney044/Ebird_IPEDS/main/IPEDS.csv"
-
-# Load the data
-Ebird <- read_csv(EB_url)
-IPEDS <- read_csv(IP_url)
+# ian
 ```
 
+## Load Packages
 
-## Bird Species Richness per Campus
+```{r}
+# everyone add as needed
+```
 
-## Join Species Richness to ipeds data
+## Bird Species Richness per Campus (2)
 
-## Explore bird species richness and impervious surface
+## Join Species Richness to ipeds data (3)
 
-## 
+## Explore bird species richness and impervious surface (4)
+
+### Hypothesis (4a)
+
+### Relationship Across Colleges (4b)
+
+### Mechanism (4c)
+
+### By Taxonomic Order (4d)
 
 ## Team Member Individual Explorations
 
