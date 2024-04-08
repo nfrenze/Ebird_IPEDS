@@ -1,0 +1,31 @@
+---
+title: "ColBioProject_ZIMMERMAN_FRENZE_STONEFIELD_LANG_URBANOWICZ_MORALES"
+format: html
+editor: visual
+---
+
+## Load Data
+
+## Load Packages
+
+## Bird Species Richness per Campus
+
+## Join Species Richness to ipeds data
+
+## Explore bird species richness and impervious surface
+
+## 
+
+## Team Member Individual Explorations
+
+### Zimmerman
+
+### Frenze
+
+### Stonefield
+
+### Lang
+
+### Urbanowicz
+
+### Morales
