@@ -4,9 +4,25 @@ format: html
 editor: visual
 ---
 
+## Load Packages
+
+```{r}
+library(tidyverse)
+```
+
 ## Load Data
 
-## Load Packages
+```{r}
+# Pull data from https://github.com/Stoney044/Ebird_IPEDS
+
+EB_url <- "https://raw.githubusercontent.com/Stoney044/Ebird_IPEDS/main/EBbird.csv"
+IP_url <- "https://raw.githubusercontent.com/Stoney044/Ebird_IPEDS/main/IPEDS.csv"
+
+# Load the data
+Ebird <- read_csv(EB_url)
+IPEDS <- read_csv(IP_url)
+```
+
 
 ## Bird Species Richness per Campus
 
