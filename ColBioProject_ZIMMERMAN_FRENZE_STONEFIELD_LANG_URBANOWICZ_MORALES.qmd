@@ -34,11 +34,56 @@ IPEDS <- read_csv(IP_url)
 
 ### Hypothesis (4a)
 
+There will be less richness with more impervious surface because these surfaces cannot provide the resources birds need to survive.
+
 ### Relationship Across Colleges (4b)
+
+```{r}
+# Lee
+
+merged_data |>
+  group_by(UNITID) |> 
+  ggplot(aes(x = mean_impervious, y = mean_species_richness)) +
+  geom_smooth(se = FALSE)
+  
+merged_data |>
+  group_by(UNITID) |> 
+  ggplot(aes(x = log(mean_impervious), y = mean_species_richness)) +
+  geom_smooth(se = FALSE)  
+
+merged_data |>
+  group_by(UNITID) |> 
+  ggplot(aes(x = mean_impervious, y = log(mean_species_richness))) +
+  geom_smooth(se = FALSE)
+
+merged_data |>
+  group_by(UNITID) |> 
+  ggplot(aes(x = log(mean_impervious), y = log(mean_species_richness))) +
+  geom_smooth(se = FALSE)
+
+```
 
 ### Mechanism (4c)
 
+Mostly stable then dips, implies that there is a threshold of impervious surface that is okay before it causes problems.
+
 ### By Taxonomic Order (4d)
+
+
+```{r}
+# Lee
+
+Ebird |> 
+  group_by(UNITID, ORDER) |> 
+  mutate(species_count = n_distinct(`SCIENTIFIC NAME`)) |> 
+  group_by(UNITID, ORDER) |> 
+  summarise(mean_species_richness = mean(species_count, na.rm = TRUE)) |> 
+  right_join(IPEDS) |> 
+  ggplot(aes(x = mean_impervious, y = mean_species_richness)) +
+  geom_smooth(se = FALSE) +
+  facet_wrap(~ORDER, scales = "free_y")
+
+```
 
 ## Team Member Individual Explorations
 
