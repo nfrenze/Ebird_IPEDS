@@ -27,8 +27,16 @@ IPEDS <- read_csv(IP_url)
 
 
 ## Bird Species Richness per Campus (2)
+species_richness <- Ebird %>%
++     group_by(UNITID, `SAMPLING EVENT IDENTIFIER`) %>%
++     summarise(species_count = n_distinct(`SCIENTIFIC NAME`))
+mean_species_richness <- species_richness %>%
++     group_by(UNITID) %>%
++     summarise(mean_species_richness = mean(species_count, na.rm = TRUE))
 
 ## Join Species Richness to ipeds data (3)
+merged_data <- IPEDS %>%
++     left_join(mean_species_richness, by = "UNITID") 
 
 ## Explore bird species richness and impervious surface (4)
 
