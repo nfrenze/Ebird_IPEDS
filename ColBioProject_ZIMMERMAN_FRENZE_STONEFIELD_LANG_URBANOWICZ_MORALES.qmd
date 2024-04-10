@@ -28,7 +28,37 @@ IPEDS <- read_csv(IP_url)
 
 ## Bird Species Richness per Campus (2)
 
+### Richness Per Sampling Event
+
+```{r}
+# Ingrid, Lee, Elizabeth, Jake, Ian
+
+species_richness <- Ebird |> 
+  group_by(UNITID, `SAMPLING EVENT IDENTIFIER`) |> 
+  mutate(species_count = n_distinct(`SCIENTIFIC NAME`))
+
+```
+
+### Average Sampling Event Richness per UNITID
+
+```{r}
+# Ingrid, Lee, Elizabeth, Jake, Ian
+
+mean_species_richness <- species_richness |> 
+  group_by(UNITID) |> 
+  summarise(mean_species_richness = mean(species_count, na.rm = TRUE))
+
+```
+
 ## Join Species Richness to ipeds data (3)
+
+```{r}
+# Elizabeth
+
+merged_data <- IPEDS |> 
+  left_join(mean_species_richness)
+
+```
 
 ## Explore bird species richness and impervious surface (4)
 
