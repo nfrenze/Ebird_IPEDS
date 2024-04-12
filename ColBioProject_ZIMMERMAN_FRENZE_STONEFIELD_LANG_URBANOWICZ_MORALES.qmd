@@ -24,6 +24,20 @@ IP_url <- "https://raw.githubusercontent.com/Stoney044/Ebird_IPEDS/main/IPEDS.cs
 Ebird <- read_csv(EB_url)
 IPEDS <- read_csv(IP_url)
 ```
+# Clean Metadata
+# Ian
+metadata <- metadata |>
+  select(varTitle, varName) 
+
+IPEDS_columns <- IPEDS |> 
+  colnames()
+
+# Filter the metadata only to include the columns in the IPEDS data
+metadata <- metadata |>
+  filter(varName %in% IPEDS_columns)
+
+# export metadata as csv file 
+# write_csv(metadata, "Data/Clean_IPEDS_metadata.csv")
 
 
 ## Bird Species Richness per Campus (2)
