@@ -140,5 +140,32 @@ Ebird |>
 ### Lang
 
 ### Urbanowicz
+#Variable: LOCALE
+> filtered_data <- merged_data |>
++     drop_na(LOCALE, mean_species_richness)
+> ggplot(filtered_data, aes(x = LOCALE, y = mean_species_richness)) +
++     geom_jitter(width = 0.3, height = 0, alpha = 0.6) +  
++     labs(x = "Locale", y = "Bird Species Richness", title = "Bird Species Richness by Urbanization") +
++     theme_minimal()
+
+#What is the hypothesis that you are testing? What is the reason that it makes sense to look at the hypothesis?
+As the degree of urbanization increases, bird species richness decreases resulting in a negative relationship. It is important to look at the effects of urbanization in terms of bird species richness because of its drastic habitat alteration, negative impact on bird species and the resulting ecological responses, and research implications. An increase in LOCALE may result in situations such as deforestation and fragmentation of local habitats which leads to a loss of suitable habitats for different bird species. Urbanization may also reduce different resources for birds such as nesting sites and food; however, even if certain birds may be able to adapt to human development, it may lead to competition with invasive species lessening the likelihood of a diverse bird population. Studying different levels of urbanization may also give insight into human environmental changes and its effects on wildlife which could be helpful in terms of conservation efforts. Finally, it could contribute to different research which could help in creating policies for conservation and a more sustainable way of building urban environments. 
+#Does accounting for impervious surface or taxonomic order change your results
+Accounting for impervious surfaces may help control for the effects of habitat alteration and urban development on bird species richness and has the ability to provide a better understanding of the impact of urbanization on bird diversity. In regards to taxonomic order, it can reveal how different bird groups respond to urbanization, specifically how it can help identify specific groups that are more sensitive or tolerant to urbanization pressures.
+
+
+#In regards to impervious surfaces:
+ggplot(filtered_data, aes(x = LOCALE, y = mean_species_richness, color = mean_impervious)) +
++     geom_jitter(width = 0.3, height = 0, alpha = 0.6) +  
++     labs(x = "Locale", y = "Bird Species Richness", title = "Bird Species Richness by Urbanization") +
++     theme_minimal()
+
+#In regards to taxonomic order:
+> ordermerged_data <- merge(filtered_data, Ebird, by = "UNITID", all.x = TRUE)
+> ggplot(ordermerged_data, aes(x = LOCALE, y = mean_species_richness)) +
++     geom_jitter(width = 0.3, height = 0, alpha = 0.6) +  
++     labs(x = "Locale", y = "Bird Species Richness", title = "Bird Species Richness by Urbanization") +
++     theme_minimal() +
++     facet_wrap(~ ORDER, scales = "free_y", ncol = 2)
 
 ### Morales
