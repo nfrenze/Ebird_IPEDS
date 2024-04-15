@@ -137,6 +137,9 @@ Ebird |>
 ### Zimmerman
 
 ### Frenze
+#### INSTSIZE/ENRTOT Enrollment
+
+Hypothesis: Schools with higher enrollments would have larger campuses which could confer a certain degree of urbanization or are likely to be in already urbanized areas which deter certain species. Therefore expect schools with larger enrollment to have on average less species richness than colleges with smaller enrollments.
 ```{r}
 merged_data_NF<-merged_data|>select(
   INSTNM, INSTSIZE, ENRTOT, mean_impervious, mean_species_richness)|>
@@ -165,7 +168,8 @@ plot_2NF<-ggplot(data = species_richness_per_enrollment) +
 print(plot_1NF + plot_2NF)
 ```
 
-There is no apparent correlation between the average impervious surface or institution size. This data set suggest there is little correlation between institution size and species richness. \# However it should be noted that seeing that even the smaller institution sizes have equitable species richness the larger ones which would logically require a larger campuses on average. This could indicate that smaller institutions may have higher species richness per square mile and with additional data pertaining to the each individual campuses area further analysis can be done.
+There is no apparent correlation between the average impervious surface or institution size. This data set suggest there is little correlation between institution size and species richness. However it should be noted that seeing that even the smaller institution sizes have equitable species richness the larger ones which would logically require a larger campuses on average. When dividing the mean species richness by total enrollment, smaller schools appear to have more species richness.
+
 ### Stonefield
 
 ### Lang
