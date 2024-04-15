@@ -85,25 +85,28 @@ There will be less richness with more impervious surface because these surfaces 
 ```{r}
 # Lee
 
+
+
+
 merged_data |>
   group_by(UNITID) |> 
   ggplot(aes(x = mean_impervious, y = mean_species_richness)) +
-  geom_smooth(se = FALSE)
+  geom_smooth(se = FALSE) + labs(x = "Mean Impervious Surface", y = "Mean Species Richness")
   
 merged_data |>
   group_by(UNITID) |> 
   ggplot(aes(x = log(mean_impervious), y = mean_species_richness)) +
-  geom_smooth(se = FALSE)  
+  geom_smooth(se = FALSE) + labs(x = "Log(Mean Impervious Surface)", y = "Mean Species Richness")  
 
 merged_data |>
   group_by(UNITID) |> 
   ggplot(aes(x = mean_impervious, y = log(mean_species_richness))) +
-  geom_smooth(se = FALSE)
+  geom_smooth(se = FALSE) + labs(x = "Mean Impervious Surface", y = "Log(Mean Species Richness)")
 
 merged_data |>
   group_by(UNITID) |> 
   ggplot(aes(x = log(mean_impervious), y = log(mean_species_richness))) +
-  geom_smooth(se = FALSE)
+  geom_smooth(se = FALSE) + labs(x = "Log(Mean Impervious Surface", y = "Log(Mean Species Richness)")
 
 ```
 
@@ -134,7 +137,35 @@ Ebird |>
 ### Zimmerman
 
 ### Frenze
+```{r}
+merged_data_NF<-merged_data|>select(
+  INSTNM, INSTSIZE, ENRTOT, mean_impervious, mean_species_richness)|>
+  filter(!is.na(mean_species_richness))|>
+  filter(!is.na(ENRTOT))|>
+  mutate(INSTSIZE = factor(INSTSIZE))
 
+Enrollment_range<-c("Under 1,000", "1,000-5,000", "5,000-10,000", "10,000-20,000", "20,000+")
+
+plot_1NF<-ggplot(data = merged_data_NF) +
+  geom_boxplot(aes(x = INSTSIZE, y = mean_species_richness, color = INSTSIZE)) +
+  labs(x = "Institutation Size", y = "Mean Species Richness", color = "Number of Students Enrolled") + 
+  theme(legend.position = "bottom") +
+  scale_color_discrete(labels = Enrollment_range)  
+
+species_richness_per_enrollment<-merged_data_NF|>mutate(
+  Species_richness_per_student = mean_species_richness/ENRTOT,
+  .keep = "all"
+)
+
+plot_2NF<-ggplot(data = species_richness_per_enrollment) +
+  geom_boxplot(aes(x = INSTSIZE, y = Species_richness_per_student, color = INSTSIZE)) +
+  labs(x = "Institutation Size", y = "Mean Species Richness per Student", color = "Number of Students Enrolled") + 
+  theme(legend.position = "none") +
+  scale_color_discrete(labels = Enrollment_range) 
+print(plot_1NF + plot_2NF)
+```
+
+There is no apparent correlation between the average impervious surface or institution size. This data set suggest there is little correlation between institution size and species richness. \# However it should be noted that seeing that even the smaller institution sizes have equitable species richness the larger ones which would logically require a larger campuses on average. This could indicate that smaller institutions may have higher species richness per square mile and with additional data pertaining to the each individual campuses area further analysis can be done.
 ### Stonefield
 
 ### Lang
