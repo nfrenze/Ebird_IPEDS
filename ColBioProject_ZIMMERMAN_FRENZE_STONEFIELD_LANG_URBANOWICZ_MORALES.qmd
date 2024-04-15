@@ -137,6 +137,20 @@ Ebird |>
 
 ### Stonefield
 
+land_grant_SR <- merged_data |> 
+  select(UNITID, INSTNM, mean_species_richness, LANDGRNT)|>
+  filter(is.na(mean_species_richness) == FALSE) |>
+  mutate(LANDGRNT = ifelse(LANDGRNT == 1, "Land Grant", "Not Land Grant"))
+
+land_grant_SR |>
+  ggplot(aes(x = LANDGRNT, y = mean_species_richness)) +
+  geom_boxplot(aes(fill = LANDGRNT)) +
+  labs(title = "Mean Species Richness of Land Grant Universities",
+       x = "Land Grant Status",
+       y = "Mean Species Richness") +
+  theme_minimal() +
+  scale_fill_manual(values = c("Land Grant" = "green", "Not Land Grant" = "skyblue2"))
+
 ### Lang
 
 ### Urbanowicz
